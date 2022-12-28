@@ -100,6 +100,11 @@ def parse_args():
 
 def main():
     args = parse_args()
+    timestamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
+    if args.show_dir:
+        args.show_dir = osp.join(args.show_dir, timestamp, 'vis')
+    if args.eval_options.get('submission_dir'):
+        args.eval_options['submission_dir'] = osp.join(args.eval_options['submission_dir'], timestamp)
 
     assert args.out or args.eval or args.format_only or args.show \
         or args.show_dir, \

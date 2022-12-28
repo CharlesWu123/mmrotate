@@ -355,7 +355,6 @@ def _merge_func(info, CLASSES, iou_thr):
                 cls_dets = torch.from_numpy(dets[labels == i]).cuda()
             except:  # noqa: E722
                 cls_dets = torch.from_numpy(dets[labels == i])
-            nms_dets, keep_inds = nms_rotated(cls_dets[:, :5], cls_dets[:, -1],
-                                              iou_thr)
+            nms_dets, keep_inds = nms_rotated(cls_dets[:, :5], cls_dets[:, -1], iou_thr)
             big_img_results.append(nms_dets.cpu().numpy())
     return img_id, big_img_results
