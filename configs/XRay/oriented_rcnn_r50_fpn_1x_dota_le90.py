@@ -3,8 +3,6 @@ _base_ = [
     '../_base_/datasets/xray.py', '../_base_/schedules/schedule_1x.py',
     '../_base_/default_runtime.py'
 ]
-# 设置最大 epochs
-runner = dict(type='EpochBasedRunner', max_epochs=30)
 
 timestamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
 work_dir = f'./work_dirs/oriented_rcnn_r50_fpn_1x_dota_le90_{timestamp}'
@@ -35,6 +33,7 @@ model = dict(
         anchor_generator=dict(
             type='AnchorGenerator',
             scales=[8],
+            # ratios=[0.2, 0.5, 1.0, 2.0, 5.0],
             ratios=[0.5, 1.0, 2.0],
             strides=[4, 8, 16, 32, 64]),
         bbox_coder=dict(
@@ -124,7 +123,7 @@ model = dict(
         rcnn=dict(
             nms_pre=2000,
             min_bbox_size=0,
-            score_thr=0.1,
+            score_thr=0.05,
             nms=dict(iou_thr=0.1),
             max_per_img=2000)))
 
@@ -145,8 +144,8 @@ train_pipeline = [
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels'])
 ]
 data = dict(
-    samples_per_gpu=4,     # Batch Size: 24G->12
-    workers_per_gpu=4,
+    samples_per_gpu=2,     # Batch Size: 24G->12
+    workers_per_gpu=2,
     train=dict(pipeline=train_pipeline, version=angle_version),
     val=dict(version=angle_version),
     test=dict(version=angle_version))

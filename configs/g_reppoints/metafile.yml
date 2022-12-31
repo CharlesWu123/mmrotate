@@ -11,7 +11,7 @@ Collections:
   Paper:
     URL: None
     Title: 'G-Rep: Gaussian Representation for Arbitrary-Oriented Object Detection'
-  README: configs/g_reppoints/README.md
+  README: configs/g_reppoints/README_mmrotate.md
 
 Models:
   - Name: g_reppoints_r50_fpn_1x_dota_le135

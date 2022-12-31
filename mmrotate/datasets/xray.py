@@ -186,7 +186,7 @@ class XRayDataset(DOTADataset):
                 if dets.size == 0: continue
                 bboxes = obb2poly_np(dets, self.version)
                 for bbox in bboxes:
-                    if bbox[-1] < 0.1: continue
+                    # if bbox[-1] < 0.1: continue
                     text_element = [str(img_id) + '.jpg', self.CLASSES[cls], str(bbox[-1])] + [f'{p:.2f}' for p in bbox[:-1]]
                     lines.append(text_element)
                     # file.writelines(' '.join(text_element) + '\n')

@@ -8,8 +8,8 @@
 """
 from natsort import natsorted
 
-file_path = '/data/wuzhichao/homework/mmrotate/submission_dir/20221227_104824/results_src.txt'
-save_path = '/data/wuzhichao/homework/mmrotate/submission_dir/20221227_104824/results.txt'
+file_path = '/data/wuzhichao/homework/mmrotate/submission_dir/20221230_015028/results_src.txt'
+save_path = '/data/wuzhichao/homework/mmrotate/submission_dir/20221230_015028/results.txt'
 with open(file_path, 'r', encoding='utf-8') as f:
     lines = f.readlines()
 new_lines = []

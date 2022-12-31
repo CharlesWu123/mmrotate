@@ -3,12 +3,12 @@ name: build
 on:
   push:
     paths-ignore:
-      - 'README.md'
+      - 'README_mmrotate.md'
       - 'docs/**'
 
   pull_request:
     paths-ignore:
-      - 'README.md'
+      - 'README_mmrotate.md'
       - 'docs/**'
 
 jobs:

@@ -7,8 +7,8 @@ from setuptools import find_packages, setup
 
 
 def readme():
-    """Load README.md."""
-    with open('README.md', encoding='utf-8') as f:
+    """Load README_mmrotate.md."""
+    with open('README_mmrotate.md', encoding='utf-8') as f:
         content = f.read()
     return content
 

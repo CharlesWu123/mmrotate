@@ -6,4 +6,6 @@ from .pipelines import *  # noqa: F401, F403
 from .sar import SARDataset  # noqa: F401, F403
 from .xray import XRayDataset
 
-__all__ = ['SARDataset', 'DOTADataset', 'build_dataset', 'HRSCDataset', 'XRayDataset']
+from .dataset_wrappers import MyMultiImageMixDataset
+
+__all__ = ['SARDataset', 'DOTADataset', 'build_dataset', 'HRSCDataset', 'XRayDataset', 'MyMultiImageMixDataset']

@@ -438,7 +438,26 @@ class RMosaic(Mosaic):
             bbox_clip_border=bbox_clip_border,
             skip_filter=skip_filter,
             pad_val=pad_val,
-            prob=1.0)
+            prob=prob)
+
+    def get_indexes(self, dataset, ratio=[]):
+        """Call function to collect indexes.
+
+        Args:
+            dataset (:obj:`MultiImageMixDataset`): The dataset.
+
+        Returns:
+            list: indexes.
+        """
+        if isinstance(dataset, (list, tuple)):
+            indexes = []
+            start_index = 0
+            for n, d in zip(ratio, dataset):
+                indexes += [random.randint(start_index, start_index+len(d)) for _ in range(n)]
+                start_index += len(dataset)
+        else:
+            indexes = [random.randint(0, len(dataset)) for _ in range(3)]
+        return indexes
 
     def _mosaic_transform(self, results):
         """Mosaic transform function.
@@ -515,12 +534,12 @@ class RMosaic(Mosaic):
         if len(mosaic_labels) > 0:
             mosaic_bboxes = np.concatenate(mosaic_bboxes, 0)
             mosaic_labels = np.concatenate(mosaic_labels, 0)
-
-            mosaic_bboxes, mosaic_labels = \
-                self._filter_box_candidates(
-                    mosaic_bboxes, mosaic_labels,
-                    2 * self.img_scale[1], 2 * self.img_scale[0]
-                )
+            if not self.skip_filter:
+                mosaic_bboxes, mosaic_labels = \
+                    self._filter_box_candidates(
+                        mosaic_bboxes, mosaic_labels,
+                        2 * self.img_scale[1], 2 * self.img_scale[0]
+                    )
         # If results after rmosaic does not contain any valid gt-bbox,
         # return None. And transform flows in MultiImageMixDataset will
         # repeat until existing valid gt-bbox.

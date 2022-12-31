@@ -11,7 +11,7 @@ Collections:
   Paper:
     URL: None
     Title: 'SASM RepPoints'
-  README: configs/sasm_reppoints/README.md
+  README: configs/sasm_reppoints/README_mmrotate.md
 
 Models:
   - Name: sasm_reppoints_r50_fpn_1x_dota_oc

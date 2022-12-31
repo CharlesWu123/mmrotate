@@ -63,8 +63,7 @@ def kfiou_loss(pred,
 
     # Smooth-L1 norm
     diff = torch.abs(xy_p - xy_t)
-    xy_loss = torch.where(diff < beta, 0.5 * diff * diff / beta,
-                          diff - 0.5 * beta).sum(dim=-1)
+    xy_loss = torch.where(diff < beta, 0.5 * diff * diff / beta, diff - 0.5 * beta).sum(dim=-1)
     Vb_p = 4 * Sigma_p.det().sqrt()
     Vb_t = 4 * Sigma_t.det().sqrt()
     K = Sigma_p.bmm((Sigma_p + Sigma_t).inverse())

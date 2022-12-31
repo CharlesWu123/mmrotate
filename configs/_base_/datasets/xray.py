@@ -1,6 +1,6 @@
 # dataset settings
 dataset_type = 'XRayDataset'
-data_root = '/data/wuzhichao/homework/rotate_data/'
+data_root = '/data/wuzhichao/homework/rotate_data/datasets_hw/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -32,16 +32,16 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'datasets_hw/train/annotations',
-        img_prefix=data_root + 'datasets_hw/train/images',
+        ann_file=data_root + 'train/annotations',
+        img_prefix=data_root + 'train/images',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'datasets_hw/val/annotations',
-        img_prefix=data_root + 'datasets_hw/val/images',
+        ann_file=data_root + 'val/annotations',
+        img_prefix=data_root + 'val/images',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'datasets_hw/test/images',
-        img_prefix=data_root + 'datasets_hw/test/images',
+        ann_file=data_root + 'test/images',
+        img_prefix=data_root + 'test/images',
         pipeline=test_pipeline))
